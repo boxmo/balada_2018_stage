@@ -104,7 +104,81 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../../.config/yarn/global/node_modules/process/browser.js":[function(require,module,exports) {
+})({"assets/img/equipe/1.jpg":[function(require,module,exports) {
+module.exports = "/1.67a70f4d.jpg";
+},{}],"node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
+
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
+  }
+
+  return bundleURL;
+}
+
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
+  }
+
+  return '/';
+}
+
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/layout.sass":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"./../img/cover.jpg":[["cover.546efcac.jpg","assets/img/cover.jpg"],"assets/img/cover.jpg"],"./../img/equipe/1.jpg":[["1.67a70f4d.jpg","assets/img/equipe/1.jpg"],"assets/img/equipe/1.jpg"],"_css_loader":"node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -10683,7 +10757,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"../../.config/yarn/global/node_modules/process/browser.js"}],"node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
+},{"process":"node_modules/process/browser.js"}],"node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -17160,91 +17234,116 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
     value: true
   });
 });
-},{"jquery":"node_modules/jquery/dist/jquery.js","popper.js":"node_modules/popper.js/dist/esm/popper.js"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
-
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
-}
-
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
-
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
-
-  return '/';
-}
-
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
-
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
-
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
-    }
-
-    cssTimeout = null;
-  }, 50);
-}
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"assets/css/layout.sass":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"jquery":"node_modules/jquery/dist/jquery.js","popper.js":"node_modules/popper.js/dist/esm/popper.js"}],"assets/js/fullclip.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = _default;
+
+var _jquery = _interopRequireDefault(require("jquery"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _default(options) {
+  var settings = _jquery.default.extend({
+    current: 0,
+    images: [],
+    transitionTime: 1000,
+    wait: 3000,
+    static: false
+  }, options); // preload images
+
+
+  var i, end;
+
+  for (i = 0, end = settings.images.length; i < end; ++i) {
+    new Image().src = settings.images[i];
+  } // sort out the transitions + specify vendor prefixes
+
+
+  (0, _jquery.default)('.fullBackground').css('background-image', 'url(' + settings.images[settings.current] + ')').css('-webkit-transition', 'background ' + settings.transitionTime + 's ease-in-out').css('-moz-transition', 'background ' + settings.transitionTime + 'ms ease-in-out').css('-ms-transition', 'background ' + settings.transitionTime + 'ms ease-in-out').css('-o-transition', 'background ' + settings.transitionTime + 'ms ease-in-out').css('transition', 'background ' + settings.transitionTime + 'ms ease-in-out'); // if only one image, set as static background
+
+  if (settings.static) {
+    (0, _jquery.default)(this).css('background-image', 'url(' + settings.images[settings.current] + ')');
+    return;
+  } // change the background image
+
+
+  (function update() {
+    settings.current = (settings.current + 1) % settings.images.length;
+    (0, _jquery.default)('.fullBackground').css('background-image', 'url(' + settings.images[settings.current] + ')');
+    setTimeout(update, settings.wait);
+  })();
+}
+
+_jquery.default;
+},{"jquery":"node_modules/jquery/dist/jquery.js"}],"assets/img/equipe/2.jpg":[function(require,module,exports) {
+module.exports = "/2.0b4c6abd.jpg";
+},{}],"assets/img/equipe/3.jpg":[function(require,module,exports) {
+module.exports = "/3.977cab86.jpg";
+},{}],"assets/img/equipe/4.jpg":[function(require,module,exports) {
+module.exports = "/4.164426dd.jpg";
+},{}],"assets/img/equipe/5.jpg":[function(require,module,exports) {
+module.exports = "/5.dc4582a2.jpg";
+},{}],"assets/img/equipe/6.jpg":[function(require,module,exports) {
+module.exports = "/6.80a20785.jpg";
+},{}],"assets/img/equipe.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _ = _interopRequireDefault(require("./equipe/1.jpg"));
+
+var _2 = _interopRequireDefault(require("./equipe/2.jpg"));
+
+var _3 = _interopRequireDefault(require("./equipe/3.jpg"));
+
+var _4 = _interopRequireDefault(require("./equipe/4.jpg"));
+
+var _5 = _interopRequireDefault(require("./equipe/5.jpg"));
+
+var _6 = _interopRequireDefault(require("./equipe/6.jpg"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _default = {
+  imgs: [_.default, _2.default, _3.default, _4.default, _5.default, _6.default]
+};
+exports.default = _default;
+},{"./equipe/1.jpg":"assets/img/equipe/1.jpg","./equipe/2.jpg":"assets/img/equipe/2.jpg","./equipe/3.jpg":"assets/img/equipe/3.jpg","./equipe/4.jpg":"assets/img/equipe/4.jpg","./equipe/5.jpg":"assets/img/equipe/5.jpg","./equipe/6.jpg":"assets/img/equipe/6.jpg"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+require("./assets/css/layout.sass");
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
 var bootstrap = _interopRequireWildcard(require("bootstrap"));
 
-require("./assets/css/layout.sass");
+var _fullclip = _interopRequireDefault(require("./assets/js/fullclip.js"));
+
+var _equipe = _interopRequireDefault(require("./assets/img/equipe.js"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-},{"jquery":"node_modules/jquery/dist/jquery.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","./assets/css/layout.sass":"assets/css/layout.sass"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+// CSS
+// JS
+_jquery.default.fn.fullclip = _fullclip.default;
+(0, _jquery.default)('document').ready(function () {
+  (0, _jquery.default)(".fullBackground").fullclip({
+    images: _equipe.default.imgs,
+    wait: 6000
+  }); // const monthDay = new Date().getDate();
+  // const dayTrigger = $("#schedule-day-nav li").find(`[data-day="${monthDay}"]`);
+  // console.log(dayTrigger);
+});
+},{"./assets/css/layout.sass":"assets/css/layout.sass","jquery":"node_modules/jquery/dist/jquery.js","bootstrap":"node_modules/bootstrap/dist/js/bootstrap.js","./assets/js/fullclip.js":"assets/js/fullclip.js","./assets/img/equipe.js":"assets/img/equipe.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -17271,7 +17370,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "38087" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "37577" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -17413,5 +17512,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
 //# sourceMappingURL=/balada_2018.e31bb0bc.map
